@@ -1,0 +1,32 @@
+<c3p0-config>
+	<default-config>
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="jdbcUrl">jdbc:mysql://59.110.45.242/dh_database</property>
+		<property name="user">yzwltestuser</property>
+		<property name="password">yWzLuz7yuTjsf</property>
+	</default-config>
+</c3p0-config>
+<!-- <c3p0-config>
+	<default-config>
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="jdbcUrl">jdbc:mysql://101.200.237.188/dh_database</property>
+		<property name="user">denghua</property>
+		<property name="password">denghua</property>
+	</default-config>
+</c3p0-config> -->
+<!-- <c3p0-config>
+	<default-config>
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="jdbcUrl">jdbc:mysql:///yzwl</property>
+		<property name="user">root</property>
+		<property name="password">root</property>
+	</default-config>
+</c3p0-config> -->
+<!-- <c3p0-config>
+	<default-config>
+		<property name="driverClass">oracle.jdbc.driver.OracleDriver</property>
+		<property name="jdbcUrl">jdbc:oracle:thin:@127.0.0.1:1521:XE</property>
+		<property name="user">ht1604</property>
+		<property name="password">htdb</property>
+	</default-config>
+</c3p0-config> -->
