@@ -2,25 +2,24 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.elion.freemarker</groupId>
-  <artifactId>freemarker-test</artifactId>
+  <groupId>com.ihmhny</groupId>
+  <artifactId>freemarker</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>freemarker-test</name>
+  <name>freemarker</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <junit.version>4.12</junit.version>
-    <slf4j.version>1.6.4</slf4j.version>
-    <freemarker.version>2.3.23</freemarker.version>
     <mysql.version>5.1.32</mysql.version>
+    <freemarker.version>2.3.23</freemarker.version>
+    <slf4j.version>1.6.4</slf4j.version>
+    <junit.version>4.12</junit.version>
     <c3p0.version>0.9.5.2</c3p0.version>
   </properties>
 
   <dependencies>
-
     <!-- MySql -->
     <dependency>
       <groupId>mysql</groupId>
@@ -57,17 +56,46 @@
 
   </dependencies>
 
-
+  <profiles>
+    <profile>
+      <id>business</id>
+      <properties>
+        <deploy.type>business</deploy.type>
+      </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+    <profile>
+      <id>manage</id>
+      <properties>
+        <deploy.type>manage</deploy.type>
+      </properties>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+    </profile>
+  </profiles>
   <build>
+    <finalName>freemarker</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/resources.${deploy.type}</directory>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.7</source>
+          <target>1.7</target>
         </configuration>
       </plugin>
     </plugins>
   </build>
 </project>
+
