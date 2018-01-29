@@ -25,6 +25,8 @@ public class RunEntrance {
 	private static String tableName = null;
 	/* 数据表对应的类名 */
 	private static String className = null;
+	/* 数据表对应的文件名 */
+	private static String fileName = null;
 	/*  */
 	private static Logger log = Logger.getLogger(RunEntrance.class);
 
@@ -42,45 +44,34 @@ public class RunEntrance {
 			if(TableNeededMap.needTablesMap.containsKey(tableName)){
 
 				/* 生成查询pojo、操作pojo、pojo、dao、mapper、service、serviceImpl、controller目录 */
-				GenerateDirUtils.generateDir(FileSavePathMap.getSearchPojoSavePath(tableName)
-						,FileSavePathMap.getUpdatePojoFilePath(tableName)
-						,FileSavePathMap.getPojoSavePath(tableName)
-						,FileSavePathMap.getDaoFilePath(tableName)
-						,FileSavePathMap.getMapperFilePath()
-						,FileSavePathMap.getMapperExtFilePath()
-						,FileSavePathMap.getServiceFilePath(tableName)
-						,FileSavePathMap.getServiceImplFilePath(tableName)
-						,FileSavePathMap.getControllerFilePath(tableName)
-						,FileSavePathMap.getDaoTestFilePath(tableName)
-						,FileSavePathMap.getServiceTestFilePath(tableName)
-						,FileSavePathMap.getControllerTestFilePath(tableName));
+//				GenerateDirUtils.generateDir(FileSavePathMap.getSearchPojoSavePath(tableName)
+//						,FileSavePathMap.getUpdatePojoFilePath(tableName)
+//						,FileSavePathMap.getPojoSavePath(tableName)
+//						,FileSavePathMap.getDaoFilePath(tableName)
+//						,FileSavePathMap.getMapperFilePath()
+//						,FileSavePathMap.getMapperExtFilePath()
+//						,FileSavePathMap.getServiceFilePath(tableName)
+//						,FileSavePathMap.getServiceImplFilePath(tableName)
+//						,FileSavePathMap.getControllerFilePath(tableName)
+//						,FileSavePathMap.getDaoTestFilePath(tableName)
+//						,FileSavePathMap.getServiceTestFilePath(tableName)
+//						,FileSavePathMap.getControllerTestFilePath(tableName));
 				className = TableNeededMap.needTablesMap.get(tableName);
+				fileName = TableNeededMap.fileNameMap.get(tableName);
 
-				log.info("当前的表名为："+tableName+"，类名为："+className);
-				/* 生成查询的pojo对象 */
-				CodeMeachine.generate(FileSavePathMap.getSearchPojoSavePath(tableName), PropUtils.getPorp("searchVOFtlFileName"), tableName, fieldSeparator, PackageNames.getSearchPojoPackageName(tableName), className, FileNameMap.getSearchPojoFileName(className));
-				/* 生成修改的pojo对象 */
-				CodeMeachine.generate(FileSavePathMap.getUpdatePojoFilePath(tableName), PropUtils.getPorp("updateVOFtlFileName"), tableName, fieldSeparator, PackageNames.getUpdatePojoPackageName(tableName), className,FileNameMap.getUpdatePojoFileName(className));
+				log.info("当前的表名为："+tableName+"，类名为："+TableNeededMap.needTablesMap.get(tableName) + "，文件名为：" + className);
 				/* 生成pojo对象 */
-				CodeMeachine.generate(FileSavePathMap.getPojoSavePath(tableName), PropUtils.getPorp("pojoFtlFileName"), tableName, fieldSeparator, PackageNames.getPojoPackageName(tableName), className,FileNameMap.getPojoFileName(className));
+//				CodeMeachine.generate(FileSavePathMap.getPojoSavePath(tableName), PropUtils.getPorp("pojoFtlFileName"), tableName, fieldSeparator, PackageNames.getPojoPackageName(tableName), className,FileNameMap.getPojoFileName(className));
 				/* 生成dao对象 */
-				CodeMeachine.generate(FileSavePathMap.getDaoFilePath(tableName), PropUtils.getPorp("mapperInterfaceFtlFileName"), tableName, fieldSeparator, PackageNames.getDaoPackageName(tableName), className,FileNameMap.getDaoFileName(className));
+//				CodeMeachine.generate(FileSavePathMap.getDaoFilePath(tableName), PropUtils.getPorp("mapperInterfaceFtlFileName"), tableName, fieldSeparator, PackageNames.getDaoPackageName(tableName), className,FileNameMap.getDaoFileName(fileName));
 				/* 生成mapper.xml文件 */
-				CodeMeachine.generate(FileSavePathMap.getMapperFilePath(), PropUtils.getPorp("mapperXMlFtlFileName"), tableName, fieldSeparator, "", className,FileNameMap.getMapperFileName(className));
-				/* 生成mapper-ext.xml文件 */
-				CodeMeachine.generate(FileSavePathMap.getMapperExtFilePath(), PropUtils.getPorp("mapperExtXmlFtlFileName"), tableName, fieldSeparator, "", className,FileNameMap.getMapperExtFileName(className));
+				CodeMeachine.generate(FileSavePathMap.getMapperFilePath(), PropUtils.getPorp("mapperXMlFtlFileName"), tableName, fieldSeparator, "", className,FileNameMap.getMapperFileName(fileName));
 				/* 生成service接口 */
-				CodeMeachine.generate(FileSavePathMap.getServiceFilePath(tableName), PropUtils.getPorp("serviceFtlFileName"), tableName, fieldSeparator, PackageNames.getServicePackageName(tableName), className,FileNameMap.getServiceFileName(className));
+//				CodeMeachine.generate(FileSavePathMap.getServiceFilePath(tableName), PropUtils.getPorp("serviceFtlFileName"), tableName, fieldSeparator, PackageNames.getServicePackageName(tableName), className,FileNameMap.getServiceFileName(fileName));
 				/* 生成serviceImpl实现类 */
-//				CodeMeachine.generate(FileSavePathMap.getServiceImplFilePath(tableName), PropUtils.getPorp("serviceImplFtlFileName"), tableName, fieldSeparator, PackageNames.getServiceImplPackageName(tableName), className,FileNameMap.getServiceImplFileName(className));
+//				CodeMeachine.generate(FileSavePathMap.getServiceImplFilePath(tableName), PropUtils.getPorp("serviceImplFtlFileName"), tableName, fieldSeparator, PackageNames.getServiceImplPackageName(tableName), className,FileNameMap.getServiceImplFileName(fileName));
 				/* 生成controller类 */
 //				CodeMeachine.generate(FileSavePathMap.getControllerFilePath(tableName), PropUtils.getPorp("controllerFtlFileName"), tableName, fieldSeparator, PackageNames.getControllerTestPackageName(tableName), className,FileNameMap.getControllerFileName(className));
-				/* 生成dao测试类 */
-//				CodeMeachine.generateTest(FileSavePathMap.getDaoTestFilePath(tableName), PropUtils.getPorp("daoTestFtlFileName"), tableName, fieldSeparator, PackageNames.getDaoTestPackageName(tableName), className,FileNameMap.getDaoTestFileName(className));
-//				/* 生成service测试类 */
-//				CodeMeachine.generateTest(FileSavePathMap.getServiceTestFilePath(tableName), PropUtils.getPorp("serviceTestFtlFileName"), tableName, fieldSeparator, PackageNames.getServiceTestPackageName(tableName), className,FileNameMap.getServiceTestFileName(className));
-				/* 生成controller测试类 */
-//				CodeMeachine.generateTest(FileSavePathMap.getControllerTestFilePath(tableName), PropUtils.getPorp("controllerTestFtlFileName"), tableName, fieldSeparator, PackageNames.getControllerTestPackageName(tableName), className,FileNameMap.getControllerTestFileName(className));
 
 			}
 		}

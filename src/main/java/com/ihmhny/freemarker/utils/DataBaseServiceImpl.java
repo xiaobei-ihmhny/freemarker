@@ -180,12 +180,12 @@ public class DataBaseServiceImpl implements DataBaseService {
 			case "DECIMAL":
 				javaTypeName="BigDecimal";
 				break;
-			case "DATE":
-			case "TIME":
-			case "DATETIME":
-			case "TIMESTAMP":
-				javaTypeName="Date";
-				break;
+//			case "DATE":
+//			case "TIME":
+//			case "DATETIME":
+//			case "TIMESTAMP":
+//				javaTypeName="Date";
+//				break;
 			default:
 				break;
 		}

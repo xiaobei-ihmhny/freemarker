@@ -28,7 +28,7 @@ public class PackageNames {
      * @return 表名对应的模块名
      */
     public static String getModuleName(String tableName){
-        return TableNeededMap.moduleMap.get(tableName);
+        return TableNeededMap.systemMap.get(tableName);
     }
 
     /**
@@ -39,7 +39,7 @@ public class PackageNames {
     public static String getPojoPackageName(String tableName){
         String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + (moduleName ==null?"": moduleName+ ".") + propertisMap.get("pojoPackageName");
+                + (moduleName ==null?"": moduleName+ ".") + "server." + propertisMap.get("pojoPackageName");
     }
 
     /**
@@ -72,7 +72,7 @@ public class PackageNames {
     public static String getDaoPackageName(String tableName){
         String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + (moduleName ==null?"": moduleName+ ".") + propertisMap.get("daoPackageName");
+                + (moduleName ==null?"": moduleName+ ".") +  "server." + propertisMap.get("daoPackageName");
     }
 
     /**
@@ -83,7 +83,7 @@ public class PackageNames {
     public static String getServicePackageName(String tableName){
         String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + (moduleName ==null?"": moduleName+ ".") + propertisMap.get("servicePackageName");
+                + (moduleName ==null?"": moduleName+ ".") +  "server." + propertisMap.get("servicePackageName");
     }
 
     /**
@@ -94,7 +94,7 @@ public class PackageNames {
     public static String getServiceImplPackageName(String tableName){
         String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + (moduleName ==null?"": moduleName+ ".") + propertisMap.get("serviceImplPackageName");
+                + (moduleName ==null?"": moduleName+ ".") +  "server." + propertisMap.get("serviceImplPackageName");
     }
 
     /**

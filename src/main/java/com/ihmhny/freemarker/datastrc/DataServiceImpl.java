@@ -23,6 +23,8 @@ public class DataServiceImpl implements DataService {
 		templateData.put("tableName", tableName);
 		templateData.put("packageName", packageName);
 		templateData.put("className", className);
+		templateData.put("fileName", TableNeededMap.fileNameMap.get(tableName));
+		templateData.put("lowerClassName", (new StringBuilder()).append(Character.toLowerCase(className.charAt(0))).append(className.substring(1)).toString());
 		templateData.put("project",PropUtils.getPorp("project"));
 		templateData.put("updatePojo", JavaBeanMap.getUpdatePojoBean(className));
 		templateData.put("queryPojo",JavaBeanMap.getQueryPojoBean(className));
@@ -36,6 +38,11 @@ public class DataServiceImpl implements DataService {
 		templateData.put("controller_packageName", PackageNames.getControllerPackageName(tableName));
 		templateData.put("properties", dbs.getTableInfo(fieldSeparator, tableName));
 		templateData.put("requestMappingAddr", TableNeededMap.requestMappingMap.get(tableName));
+		templateData.put("module", TableNeededMap.moduleMap.get(tableName));
+		templateData.put("feignInsertEnumKey",TableNeededMap.moduleMap.get(tableName).toUpperCase() + "_SERVICE_INSERT_" + tableName.toUpperCase());
+		templateData.put("feignSelectEnumKey",TableNeededMap.moduleMap.get(tableName).toUpperCase() + "_SERVICE_SELECT_" + tableName.toUpperCase());
+		templateData.put("feignDeleteEnumKey",TableNeededMap.moduleMap.get(tableName).toUpperCase() + "_SERVICE_DELETE_" + tableName.toUpperCase());
+		templateData.put("feignUpdateEnumKey",TableNeededMap.moduleMap.get(tableName).toUpperCase() + "_SERVICE_UPDATE_" + tableName.toUpperCase());
 		log.info("当前模版所用的表名为："+tableName+"，当前模版所用的包名为："+packageName+"，当前模版所用的类名为："+className);
 		return templateData;
 	}

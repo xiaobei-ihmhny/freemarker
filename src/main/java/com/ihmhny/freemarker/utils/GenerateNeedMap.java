@@ -45,12 +45,13 @@ public class GenerateNeedMap {
         }
     }
 
+
     /**
-     * 打印表名和模块名的对应关系
-     * @param moduleMapName 存放表名和模块名之间关系的map集合
+     * 打印表名和系统名的对应关系
+     * @param moduleMapName 存放表名和系统名之间关系的map集合
      * @param separator 表名中字段的分隔符
      */
-    public static void printTableNameToModuleMap(String moduleMapName, char separator) {
+    public static void printTableNameToSystemMap(String moduleMapName, char separator) {
         try {
             String sql = "show tables";
             conn = JDBCUtils.getConn();
@@ -67,6 +68,54 @@ public class GenerateNeedMap {
             log.error("读取数据库失败，失败信息为："+e.getMessage());
         }
     }
+
+    /**
+     * 打印表名和模块名的对应关系
+     * @param moduleMapName 存放表名和模块名之间关系的map集合
+     * @param separator 表名中字段的分隔符
+     */
+    public static void printTableNameToModuleMap(String moduleMapName, char separator) {
+        try {
+            String sql = "show tables";
+            conn = JDBCUtils.getConn();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                String tableName = rs.getString(1);
+                //key为数据库表名
+                String moduleName = convertTableNameToSystem(separator, tableName);
+                String generateResult = moduleMapName + ".put(\"" + tableName + "\", \"" + moduleName + "\");";
+                System.out.println(generateResult);
+            }
+        } catch (Exception e) {
+            log.error("读取数据库失败，失败信息为："+e.getMessage());
+        }
+    }
+
+    /**
+     * 打印表名和文件名的对应关系
+     * @param moduleMapName 存放表名和文件名之间关系的map集合
+     * @param separator 表名中字段的分隔符
+     */
+    public static void printTableNameToFileNameMap(String moduleMapName, char separator) {
+        try {
+            String sql = "show tables";
+            conn = JDBCUtils.getConn();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                String tableName = rs.getString(1);
+                //key为数据库表名
+                String moduleName = convertTableNameToFileName(separator, tableName);
+                String generateResult = moduleMapName + ".put(\"" + tableName + "\", \"" + moduleName + "\");";
+                System.out.println(generateResult);
+            }
+        } catch (Exception e) {
+            log.error("读取数据库失败，失败信息为："+e.getMessage());
+        }
+    }
+
+
 
     /**
      * 打印表名和映射名的对应关系
@@ -129,6 +178,40 @@ public class GenerateNeedMap {
     }
 
     /**
+     * 将表名转换为文件名
+     * @param separator 表名中分隔符
+     * @param tableName 表名
+     * @return 表名对应的文件名
+     */
+    private static String convertTableNameToFileName(char separator, String tableName) {
+        //判断字符串中是否含有分隔符
+        String variable = tableName.toLowerCase();
+        if(variable.indexOf(separator) > -1){//如果有
+            //拿到模块名
+            String systemName = variable.substring(0,1).toUpperCase() + variable.substring(1,variable.indexOf("_"));
+            String module = variable.substring(variable.indexOf("_") + 1,variable.indexOf("_") + 2).toUpperCase() + variable.substring(variable.indexOf("_") + 2,variable.length());
+            variable = systemName + "Server" + module;
+        }
+        return variable;
+    }
+
+    /**
+     * 将表名转换为系统名
+     * @param separator 表名中分隔符
+     * @param tableName 表名
+     * @return 表名对应的系统名
+     */
+    public static String convertTableNameToSystem(char separator, String tableName) {
+        //判断字符串中是否含有分隔符
+        String variable = tableName.toLowerCase();
+        if(variable.indexOf(separator) > -1){//如果有
+            //拿到模块名
+            variable = variable.substring(variable.indexOf("_") + 1,variable.length());
+        }
+        return variable;
+    }
+
+    /**
      * 表名到实体名之间的对应关系
      * @param separator 表名中字段分隔符
      * @param tableName 表名
@@ -139,7 +222,8 @@ public class GenerateNeedMap {
         String variable = tableName.toLowerCase();
         if(variable.indexOf(separator) > -1){//如果有
             //去掉模块名
-            variable = variable.substring(variable.indexOf("_")+1);
+//            variable = variable.substring(variable.indexOf("_")+1);
+            //无模块名
             char[] varChar = variable.toCharArray();
             //首字母大写
             varChar[0] = Character.toUpperCase(varChar[0]);
@@ -163,6 +247,8 @@ public class GenerateNeedMap {
         //判断字符串中是否含有分隔符
         String variable = tableName.toLowerCase();
         if(variable.indexOf(separator) > -1){//如果有
+            //粗
+            variable = variable.substring(variable.indexOf("_"),variable.length());
             variable = variable.replaceAll(String.valueOf(separator), "/");
         }
         return variable;

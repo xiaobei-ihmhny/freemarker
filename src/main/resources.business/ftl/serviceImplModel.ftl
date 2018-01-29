@@ -1,80 +1,109 @@
 package ${serviceImpl_packageName};
 
-import com.ihmhny.common.base.AbstractBaseService;
-import com.ihmhny.common.base.BaseMapper;
-import ${mapper_packageName}.${className}Mapper;
-import ${pojo_packageName}.${className};
-import ${queryPojo_packageName}.${queryPojo};
-import ${updatePojo_packageName}.${updatePojo};
-import ${service_packageName}.${className}Service;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import ${pojo_packageName}.${className}Entity;
+import ${mapper_packageName}.${fileName}Mapper;
+import ${service_packageName}.${fileName}Service;
+import com.jd.ecc.system.server.feign.SnowflakeServerFeignClient;
+import com.jd.ecc.system.server.util.ResponseUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
- * @author xiaobei
- * @version ${version}
- * @project ${project}
- * @class_name ${className}ServiceImpl
+ * @author 
  * @date ${.now?string("yyyy-MM-dd HH:mm")}
  */
-@Service("${ className }Service")
-public class ${ className }ServiceImpl extends AbstractBaseService<Integer,${className},${updatePojo},${queryPojo}> implements ${ className }Service{
+@Service
+public class ${fileName}ServiceImpl implements ${fileName}Service {
+    private static Logger log = LoggerFactory.getLogger(${fileName}ServiceImpl.class);
+
+    @Autowired
+    SnowflakeServerFeignClient snowflakeServerFeignClient;
 
     @Resource
-    private ${className }Mapper ${className?uncap_first}Mapper;
+    ${fileName}Mapper ${fileName?uncap_first}Mapper;
 
-
+    /**
+     * 
+     * @param json
+     * @return
+     */
     @Override
-    protected BaseMapper getMapper() {
-        return ${className?uncap_first}Mapper;
+    public String insert${className}(String json) {
+        try {
+            ${className}Entity ${className?uncap_first} = JSON.parseObject(json, new TypeReference<${className}Entity>() {});
+            String id = snowflakeServerFeignClient.getDictId();
+            if (id.equals("0")) {
+                log.error("新增数据时获取主键id出错");
+                return ResponseUtil.getErrorJson();
+            } else if (id.startsWith("{")) {// 断路返回服务异常
+                return id;
+            } else {
+                ${className?uncap_first}.setId(Long.valueOf(id));
+                ${fileName?uncap_first}Mapper.insert${className}(${className?uncap_first});
+                return ResponseUtil.getSuccessJson();
+            }
+        } catch (Exception e) {
+            log.error("新增数据出错:" + e.getMessage());
+        }
+        return ResponseUtil.getErrorJson();
     }
 
-    <#--@Override-->
-    <#--public int deleteById(Integer id) {-->
-        <#--return ${className?uncap_first}Mapper.deleteById(id);-->
-    <#--}-->
+    /**
+     * 
+     * @param json
+     * @return
+     */
+    @Override
+    public String select${className}(String json) {
+        try {
+            ${className}Entity ${className?uncap_first} = JSON.parseObject(json, new TypeReference<${className}Entity>() {});
+            List<${className}Entity> list = ${fileName?uncap_first}Mapper.select${className}(${className?uncap_first});
+            return ResponseUtil.getSuccessJson(list);
+        } catch (Exception e) {
+            log.error("查询数据出错:" + e.getMessage());
+        }
+        return ResponseUtil.getErrorJson();
+    }
 
-    <#--@Override-->
-    <#--public int insert(${ className } ${className?uncap_first}) {-->
-        <#--return ${className?uncap_first}Mapper.insert(${className?uncap_first});-->
-    <#--}-->
+    /**
+     * 
+     * @param json
+     * @return
+     */
+    @Override
+    public String update${className}(String json) {
+        try {
+            ${className}Entity ${className?uncap_first} = JSON.parseObject(json, new TypeReference<${className}Entity>() {});
+            ${fileName?uncap_first}Mapper.update${className}(${className?uncap_first});
+            return ResponseUtil.getSuccessJson();
+        } catch (Exception e) {
+            log.error("修改数据出错:" + e.getMessage());
+        }
+        return ResponseUtil.getErrorJson();
+    }
 
-    <#--@Override-->
-    <#--public int insertSelective(${className} ${className?uncap_first}) {-->
-        <#--return ${className?uncap_first}Mapper.insertSelective(${className?uncap_first});-->
-    <#--}-->
 
-    <#--@Override-->
-    <#--public int batchInsert(List<${className}> list) {-->
-        <#--return ${className?uncap_first}Mapper.batchInsert(list);-->
-    <#--}-->
-
-    <#--@Override-->
-    <#--public ${ className } selectById(Integer id) {-->
-        <#--return ${className?uncap_first}Mapper.selectById(id);-->
-    <#--}-->
-
-    <#--@Override-->
-    <#--public int updateById(${className} ${className?uncap_first}) {-->
-        <#--return ${className?uncap_first}Mapper.updateById(${className?uncap_first});-->
-    <#--}-->
-
-    <#--@Override-->
-    <#--public Long selectCount(${className} ${className?uncap_first}) {-->
-        <#--return Long.valueOf(0);-->
-    <#--}-->
-
-    <#--@Override-->
-    <#--public <Q extends BaseQueryParams> PageResult<${className}> selectByParams(Q queryParams) {-->
-        <#--List<${className}> list = ${className?uncap_first}Mapper.selectByParams(queryParams);-->
-        <#--return queryPageResult(list);-->
-    <#--}-->
-
-    <#--@Override-->
-    <#--public <Q extends BaseQueryParams> Long selectCountByParams(Q queryParams) {-->
-        <#--return null;-->
-    <#--}-->
-    
+    /**
+     * 
+     * @param json
+     * @return
+     */
+    @Override
+    public String delete${className}(String json) {
+        try {
+            ${className}Entity ${className?uncap_first} = JSON.parseObject(json, new TypeReference<${className}Entity>() {});
+            ${fileName?uncap_first}Mapper.delete${className}(${className?uncap_first});
+            return ResponseUtil.getSuccessJson();
+        } catch (Exception e) {
+            log.error("修改数据出错:" + e.getMessage());
+        }
+        return ResponseUtil.getErrorJson();
+    }
 }
