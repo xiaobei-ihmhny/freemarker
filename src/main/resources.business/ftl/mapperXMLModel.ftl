@@ -3,10 +3,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="${dao_packageName}.${fileName}Mapper">
 <resultMap id="${className}Map" type="${pojo_packageName}.${className}Entity">
-	<id column="id" property="id" />
+	<id column="id" property="id" jdbcType="BIGINT" />
 	<#list properties as pro>
 	<#if pro.columnName!="id">
-    <result column="${pro.columnName}" property="${pro.proName}" />
+    <result column="${pro.columnName}" property="${pro.proName}" jdbcType="${pro.columnType}" />
     </#if>
 	</#list>
 </resultMap>
@@ -27,11 +27,9 @@
         FROM ${tableName}
         <where>
 		<#list properties as pro>
-			<#if pro.columnName!="id">
-                <if test="${pro.proName} != null" >
-                    AND ${pro.columnName} = ${r"#{"}${pro.proName}${r"}"}
-                </if>
-			</#if>
+            <if test="${pro.proName} != null" >
+                AND ${pro.columnName} = ${r"#{"}${pro.proName}${r"}"}
+            </if>
 		</#list>
         </where>
     </select>

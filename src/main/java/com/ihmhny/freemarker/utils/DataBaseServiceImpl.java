@@ -54,6 +54,9 @@ public class DataBaseServiceImpl implements DataBaseService {
 				String proType = getJavaTypeName(columnType);
 				FieldBean fieldBean = new FieldBean();
 				fieldBean.setColumnName(columnName);
+				if(columnType.equals("DATETIME")){
+					columnType = "VARCHAR";
+				}
 				fieldBean.setColumnType(columnType);
 				fieldBean.setProName(proName);
 				fieldBean.setProType(proType);

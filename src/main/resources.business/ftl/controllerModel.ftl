@@ -15,9 +15,9 @@ public class ${className}Controller extends BaseController {
     public String insertSystemDict() {
         Map<String, Object> map = new HashMap<String, Object>();
 		<#list properties as pro>
-	    <#if pro.columnName!="id">
+	    <#if pro.proName!="id" && pro.proName!="createTime" && pro.proName!="updateTime" >
 	    map.put("${pro.proName}","0"); //${pro.columnComment}
-	    </#if>
+        </#if>
 	    </#list>
         return callFeignServer(FeignSystemServiceEnum.${feignInsertEnumKey}, map);
     }
@@ -30,9 +30,7 @@ public class ${className}Controller extends BaseController {
     @RequestMapping("/delete${className}")
     public String delete${className}(Integer id){
         Map<String, Object> map = new HashMap<>();
-		<#list properties as pro>
-	    map.put("${pro.proName}","0"); //${pro.columnComment}
-	    </#list>
+	    map.put("id","0");
         return callFeignServer(FeignSystemServiceEnum.${feignDeleteEnumKey},map);
     }
 
@@ -40,7 +38,9 @@ public class ${className}Controller extends BaseController {
     public String update${className}(){
         Map<String, Object> map = new HashMap<>();
 		<#list properties as pro>
+        <#if pro.proName!="id" && pro.proName!="createTime" && pro.proName!="updateTime" >
 	    map.put("${pro.proName}","0"); //${pro.columnComment}
+        </#if>
 	    </#list>
         return callFeignServer(FeignSystemServiceEnum.${feignUpdateEnumKey}, map);
     }

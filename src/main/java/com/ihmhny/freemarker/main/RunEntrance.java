@@ -44,18 +44,12 @@ public class RunEntrance {
 			if(TableNeededMap.needTablesMap.containsKey(tableName)){
 
 				/* 生成查询pojo、操作pojo、pojo、dao、mapper、service、serviceImpl、controller目录 */
-//				GenerateDirUtils.generateDir(FileSavePathMap.getSearchPojoSavePath(tableName)
-//						,FileSavePathMap.getUpdatePojoFilePath(tableName)
-//						,FileSavePathMap.getPojoSavePath(tableName)
-//						,FileSavePathMap.getDaoFilePath(tableName)
-//						,FileSavePathMap.getMapperFilePath()
-//						,FileSavePathMap.getMapperExtFilePath()
-//						,FileSavePathMap.getServiceFilePath(tableName)
-//						,FileSavePathMap.getServiceImplFilePath(tableName)
-//						,FileSavePathMap.getControllerFilePath(tableName)
-//						,FileSavePathMap.getDaoTestFilePath(tableName)
-//						,FileSavePathMap.getServiceTestFilePath(tableName)
-//						,FileSavePathMap.getControllerTestFilePath(tableName));
+				GenerateDirUtils.generateDir(FileSavePathMap.getPojoSavePath(tableName)
+						,FileSavePathMap.getDaoFilePath(tableName)
+						,FileSavePathMap.getMapperFilePath()
+						,FileSavePathMap.getServiceFilePath(tableName)
+						,FileSavePathMap.getServiceImplFilePath(tableName)
+						,FileSavePathMap.getControllerFilePath(tableName));
 				className = TableNeededMap.needTablesMap.get(tableName);
 				fileName = TableNeededMap.fileNameMap.get(tableName);
 
