@@ -1,7 +1,5 @@
 package ${serviceImpl_packageName};
 
-import java.util.List;
-
 import ${mapper_packageName}.${className}Mapper;
 import ${pojo_packageName}.${className};
 import ${queryPojo_packageName}.${queryPojo};
@@ -74,7 +72,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 	 * Description:
 	 */
     @Override
-    public Product findById(Long id) {
+    public ${className} findById(Long id) {
         return ${className?uncap_first}Mapper.selectById(id);
     }
 
@@ -100,7 +98,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 	 * Description:
 	 */
     @Override
-    public List<Product> findByParams(${queryPojo} ${className?uncap_first}QueryParams) {
+    public List<${className}> findByParams(${queryPojo} ${className?uncap_first}QueryParams) {
         return ${className?uncap_first}Mapper.selectByParams(${className?uncap_first}QueryParams);
     }
 
