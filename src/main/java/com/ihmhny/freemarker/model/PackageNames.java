@@ -94,7 +94,7 @@ public class PackageNames {
     public static String getServiceImplPackageName(String tableName){
         String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + propertisMap.get("serviceImplPackageName") + ("."+ (moduleName ==null?"": moduleName));
+                + propertisMap.get("serviceImplPackageName") + ("."+ (moduleName ==null?"": moduleName)) + ".impl";
     }
 
     /**
@@ -103,9 +103,9 @@ public class PackageNames {
      * @return controller的包路径
      */
     public static String getControllerPackageName(String tableName){
-        String moduleName = getModuleName(tableName);
+//        String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + propertisMap.get("controllerPackageName") + ("."+ (moduleName ==null?"": moduleName));
+                + propertisMap.get("controllerPackageName");
     }
 
     /**

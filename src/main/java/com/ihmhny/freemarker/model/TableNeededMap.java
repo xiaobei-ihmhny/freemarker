@@ -32,12 +32,12 @@ public class TableNeededMap {
     public static List<String> needTablesList = new ArrayList<>();
 
     static {
-//        needTablesMap.put("iot_category", "Category");
-//        needTablesMap.put("iot_command", "Command");
-//        needTablesMap.put("iot_device", "Device");
+        needTablesMap.put("iot_category", "Category");
+        needTablesMap.put("iot_command", "Command");
+        needTablesMap.put("iot_device", "Device");
         needTablesMap.put("iot_product", "Product");
-//        needTablesMap.put("iot_property", "Property");
-//        needTablesMap.put("iot_property_enum", "PropertyEnum");
+        needTablesMap.put("iot_property", "Property");
+        needTablesMap.put("iot_property_enum", "PropertyEnum");
         //===============================================//
         needTablesList.add("iot_category");
         needTablesList.add("iot_command");

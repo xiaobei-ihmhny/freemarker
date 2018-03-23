@@ -1,15 +1,31 @@
 package ${service_packageName};
 
-import com.ihmhny.common.base.BaseService;
+import java.util.List;
 import ${pojo_packageName}.${className};
 import ${queryPojo_packageName}.${queryPojo};
 import ${updatePojo_packageName}.${updatePojo};
+
 /**
- * @author xiaobei
- * @version ${version}
- * @project ${project}
- * @class_name ${className}Service
- * @date ${.now?string("yyyy-MM-dd HH:mm")}
+ * Package: ${packageName}
+ * User:
+ * Email:
+ * Date: ${.now?string("yyyy/MM/dd")}
+ * Time: ${.now?string("HH:mm")}
+ * Description:
  */
-public interface ${className}Service extends BaseService<Integer,${className},${updatePojo},${queryPojo}>{
+public interface ${className}Service {
+
+    int deleteById(Long id);
+
+    int save(${updatePojo} ${updatePojo?uncap_first});
+
+    int saveSelective(${updatePojo} ${updatePojo?uncap_first});
+
+    ${className} findById(Long id);
+
+    int modifyById(${updatePojo} ${updatePojo?uncap_first});
+
+    List<${className}> findByParams(${queryPojo} ${queryPojo?uncap_first});
+
+    long findCountByParams(${queryPojo} ${queryPojo?uncap_first});
 }

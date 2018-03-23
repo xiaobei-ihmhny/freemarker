@@ -100,10 +100,13 @@
 		<include refid="Base_Column_List" />
 		FROM ${tableName}
         <where>
+            <if test="id != null" >
+                AND id = ${r"#{"}id${r",jdbcType=BIGINT}"}
+            </if>
 		<#list properties as pro>
 		<#if pro.columnName!="id">
             <if test="${pro.proName} != null" >
-			AND ${pro.columnName} = ${r"#{"}${pro.proName}, jdbcType=${pro.columnType}${r"}"}
+				AND ${pro.columnName} = ${r"#{"}${pro.proName}, jdbcType=${pro.columnType}${r"}"}
 			</if>
 		</#if>
 		</#list>
@@ -130,9 +133,9 @@
         <where>
 		<#list properties as pro>
 			<#if pro.columnName!="id">
-                <if test="${pro.proName} != null" >
-                    AND ${pro.columnName} = ${r"#{"}${pro.proName}, jdbcType=${pro.columnType}${r"}"}
-                </if>
+			<if test="${pro.proName} != null" >
+				AND ${pro.columnName} = ${r"#{"}${pro.proName}, jdbcType=${pro.columnType}${r"}"}
+			</if>
 			</#if>
 		</#list>
         </where>

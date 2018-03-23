@@ -1,33 +1,37 @@
 package ${queryPojo_packageName};
 
-import com.ihmhny.common.base.BaseQueryParams;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
- * @author xiaobei
- * @version ${version}
- * @project ${project}
- * @class_name ${queryPojo}
- * @date ${.now?string("yyyy-MM-dd HH:mm")}
+ * Package: ${packageName}
+ * User:
+ * Email:
+ * Date: ${.now?string("yyyy/MM/dd")}
+ * Time: ${.now?string("HH:mm")}
+ * Description:
  */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class ${queryPojo} extends BaseQueryParams {
+public class ${queryPojo} implements Serializable {
     <#list properties as pro>
-    <#if pro.columnName!="id">
-    private ${pro.proType} ${pro.proName}; //${pro.columnComment}
-    </#if>
-
-    <#if pro.proType=="String">
-    private ${pro.proType} ${pro.proName}ByLike; //${pro.columnComment} like查询
-    </#if>
+    <#--<#if pro.columnName!="id">-->
+    /**
+     * ${pro.columnComment}
+     */
+    private ${pro.proType} ${pro.proName};
+    <#--</#if>-->
 
     </#list>
+    /**
+     * 以何字段排序
+     */
+    private String orderBy;
 
-    //属性的get和set方法
+    <#--//属性的get和set方法-->
     <#list properties as pro>
-    <#if pro.columnName!="id">
+    <#--<#if pro.columnName!="id">-->
     public ${pro.proType} get${pro.proName?cap_first}() {
         return ${pro.proName};
     }
@@ -35,17 +39,14 @@ public class ${queryPojo} extends BaseQueryParams {
     public void set${pro.proName?cap_first}(${pro.proType} ${pro.proName}) {
         this.${pro.proName} = ${pro.proName};
     }
-    </#if>
-
-    <#if pro.proType=="String">
-    public ${pro.proType} get${pro.proName?cap_first}ByLike() {
-        return ${pro.proName}ByLike;
-    }
-
-    public void set${pro.proName?cap_first}ByLike(${pro.proType} ${pro.proName}ByLike) {
-        this.${pro.proName}ByLike = ${pro.proName}ByLike;
-    }
-    </#if>
+    <#--</#if>-->
 
     </#list>
+    public String getOrderBy() {
+    	return orderBy;
+    }
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
+    }
 }
