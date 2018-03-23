@@ -48,6 +48,13 @@ public class DataBaseServiceImpl implements DataBaseService {
 			for(int i=1; i<=rsMetaData.getColumnCount(); i++){
 				String columnName = rsMetaData.getColumnName(i);
 				String columnType = rsMetaData.getColumnTypeName(i);
+				if("INT".equals(columnType)){
+					columnType = "INTEGER";
+				} else if("DATETIME".equals(columnType)){
+					columnType = "TIMESTAMP";
+				} else if("BIGINT UNSIGNED".equals(columnType)){
+					columnType = "BIGINT";
+				}
 				String proName = convertField(separator, columnName);
 				//修改java类型转换方法：
 //				String proType = getTypeName(rsMetaData.getColumnType(i));

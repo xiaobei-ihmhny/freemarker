@@ -39,7 +39,7 @@ public class PackageNames {
     public static String getPojoPackageName(String tableName){
         String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + (moduleName ==null?"": moduleName+ ".") + propertisMap.get("pojoPackageName");
+                + propertisMap.get("pojoPackageName") + ("."+ (moduleName ==null?"": moduleName));
     }
 
     /**
@@ -50,7 +50,7 @@ public class PackageNames {
     public static String getSearchPojoPackageName(String tableName){
         String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + (moduleName ==null?"": moduleName+ ".") + propertisMap.get("searchPojoPackageName");
+                 + propertisMap.get("searchPojoPackageName") + ("."+ (moduleName ==null?"": moduleName));
     }
 
     /**
@@ -61,7 +61,7 @@ public class PackageNames {
     public static String getUpdatePojoPackageName(String tableName){
         String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + (moduleName ==null?"": moduleName+ ".") + propertisMap.get("updatePojoPackageName");
+                + propertisMap.get("updatePojoPackageName") + ("."+ (moduleName ==null?"": moduleName));
     }
 
     /**
@@ -72,7 +72,7 @@ public class PackageNames {
     public static String getDaoPackageName(String tableName){
         String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + (moduleName ==null?"": moduleName+ ".") + propertisMap.get("daoPackageName");
+                + propertisMap.get("daoPackageName") + ("."+ (moduleName ==null?"": moduleName));
     }
 
     /**
@@ -83,7 +83,7 @@ public class PackageNames {
     public static String getServicePackageName(String tableName){
         String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + (moduleName ==null?"": moduleName+ ".") + propertisMap.get("servicePackageName");
+                + propertisMap.get("servicePackageName") + ("."+ (moduleName ==null?"": moduleName));
     }
 
     /**
@@ -94,7 +94,7 @@ public class PackageNames {
     public static String getServiceImplPackageName(String tableName){
         String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + (moduleName ==null?"": moduleName+ ".") + propertisMap.get("serviceImplPackageName");
+                + propertisMap.get("serviceImplPackageName") + ("."+ (moduleName ==null?"": moduleName));
     }
 
     /**
@@ -105,7 +105,7 @@ public class PackageNames {
     public static String getControllerPackageName(String tableName){
         String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + (moduleName ==null?"": moduleName+ ".") + propertisMap.get("controllerPackageName");
+                + propertisMap.get("controllerPackageName") + ("."+ (moduleName ==null?"": moduleName));
     }
 
     /**
@@ -116,7 +116,7 @@ public class PackageNames {
     public static String getTestPackageName(String tableName){
         String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + (moduleName ==null?"": moduleName+ ".") + propertisMap.get("testPackageName");
+                + propertisMap.get("testPackageName") + ("."+ (moduleName ==null?"": moduleName));
 
     }
 
@@ -129,7 +129,7 @@ public class PackageNames {
     public static String getDaoTestPackageName(String tableName){
         String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + (moduleName ==null?"": moduleName+ ".") + propertisMap.get("daoTestPackageName");
+                + propertisMap.get("daoTestPackageName") + ("."+ (moduleName ==null?"": moduleName));
 
     }
 
@@ -142,7 +142,7 @@ public class PackageNames {
     public static String getServiceTestPackageName(String tableName){
         String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + (moduleName ==null?"": moduleName+ ".") + propertisMap.get("serviceTestPackageName");
+                + propertisMap.get("serviceTestPackageName") + ("."+ (moduleName ==null?"": moduleName));
 
     }
 
@@ -154,7 +154,7 @@ public class PackageNames {
     public static String getControllerTestPackageName(String tableName){
         String moduleName = getModuleName(tableName);
         return propertisMap.get("packageName")
-                + (moduleName ==null?"": moduleName+ ".") + propertisMap.get("controllerTestPackageName");
+                + propertisMap.get("controllerTestPackageName") + ("."+ (moduleName ==null?"": moduleName));
 
     }
 

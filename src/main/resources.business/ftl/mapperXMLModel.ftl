@@ -3,10 +3,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="${dao_packageName}.${className}Mapper">
 <resultMap id="${className}Map" type="${pojo_packageName}.${className}">
-	<id column="id" property="id" />
+	<id column="id" property="id" jdbcType="BIGINT"/>
 	<#list properties as pro>
 	<#if pro.columnName!="id">
-    <result column="${pro.columnName}" property="${pro.proName}" />
+    <result column="${pro.columnName}" property="${pro.proName}" jdbcType="${pro.columnType}" />
     </#if>
 	</#list>
 </resultMap>
@@ -17,7 +17,7 @@
 
 	<!-- 对象属性的集合 -->
 	<sql id = "Base_Property_List" >
-		<#list properties as pro><#if pro_has_next>${r"#{"}${pro.proName}${r"}"}, <#else>${r"#{"}${pro.proName}${r"}"}</#if></#list>
+		<#list properties as pro><#if pro_has_next>${r"#{"}${pro.proName}, jdbcType=${pro.columnType}${r"}"}, <#else>${r"#{"}${pro.proName}, jdbcType=${pro.columnType}${r"}"}</#if></#list>
 	</sql>
 
     <!-- 根据主键删除 -->
@@ -25,7 +25,7 @@
         DELETE
         FROM ${tableName}
         WHERE
-        id = ${r"#{"}id${r",jdbcType=INTEGER}"}
+        id = ${r"#{"}id${r",jdbcType=BIGINT}"}
 	</delete>
 
     <!--全部插入-->
@@ -50,7 +50,7 @@
         <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
 		<#list properties as pro>
             <if test="${pro.proName} != null" >
-			${r"#{"}${pro.proName}${r"}"},
+			${r"#{"}${pro.proName}, jdbcType=${pro.columnType}${r"}"},
             </if>
 		</#list>
         </trim>
@@ -62,7 +62,7 @@
         <include refid="Base_Column_List" />
         FROM ${tableName}
         WHERE
-        id = ${r"#{"}id${r",jdbcType=INTEGER}"}
+        id = ${r"#{"}id${r",jdbcType=BIGINT}"}
 	</select>
 
 	<!--部分字段更新-->
@@ -72,13 +72,13 @@
 			<#list properties as pro>
 			<#if pro.columnName!="id">
 			<if test="${pro.proName} != null" >
-				${pro.columnName} = ${r"#{"}${pro.proName}${r"}"},
+				${pro.columnName} = ${r"#{"}${pro.proName}, jdbcType=${pro.columnType}${r"}"},
 			</if>
 			</#if>
 			</#list>
 		</set>
 		WHERE 
-		id = ${r"#{"}id${r",jdbcType=INTEGER}"}
+		id = ${r"#{"}id${r",jdbcType=BIGINT}"}
 	</update>
 	
 	<#--<!--更新&ndash;&gt;-->
@@ -103,13 +103,8 @@
 		<#list properties as pro>
 		<#if pro.columnName!="id">
             <if test="${pro.proName} != null" >
-			AND ${pro.columnName} = ${r"#{"}${pro.proName}${r"}"}
+			AND ${pro.columnName} = ${r"#{"}${pro.proName}, jdbcType=${pro.columnType}${r"}"}
 			</if>
-			<#if pro.proType=="String">
-			<if test="${pro.proName}ByLike != null" >
-			AND ${pro.columnName} like CONCAT('%',${r"#{"}${pro.proName}ByLike${r"}"},'%' )
-			</if>
-			</#if>
 		</#if>
 		</#list>
 		</where>
@@ -136,7 +131,7 @@
 		<#list properties as pro>
 			<#if pro.columnName!="id">
                 <if test="${pro.proName} != null" >
-                    AND ${pro.columnName} = ${r"#{"}${pro.proName}${r"}"}
+                    AND ${pro.columnName} = ${r"#{"}${pro.proName}, jdbcType=${pro.columnType}${r"}"}
                 </if>
 			</#if>
 		</#list>

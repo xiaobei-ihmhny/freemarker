@@ -32,8 +32,8 @@ public class RunTest {
         }
         String tableName = keyList.get(random.nextInt(keyList.size()));
         String className = TableNeededMap.needTablesMap.get(tableName);
-        tableName = "yz_log_act";
-        className = "LogAct";
+        tableName = "iot_product";
+        className = "Product";
         System.out.println("=====表名为："+tableName);
         System.out.println("=====类名为："+className);
         System.out.println("=====要生成的表的存放路径如下：");
