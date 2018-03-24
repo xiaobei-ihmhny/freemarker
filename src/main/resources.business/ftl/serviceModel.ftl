@@ -4,28 +4,16 @@ import java.util.List;
 import ${pojo_packageName}.${className};
 import ${queryPojo_packageName}.${queryPojo};
 import ${updatePojo_packageName}.${updatePojo};
+import com.jd.bdp.ai.iot.service.common.BaseService;
 
 /**
- * Package: ${packageName}
+ * Package: ${service_packageName}
  * User:
  * Email:
  * Date: ${.now?string("yyyy/MM/dd")}
  * Time: ${.now?string("HH:mm")}
  * Description:
  */
-public interface ${className}Service {
+public interface ${className}Service extends BaseService<Long, ${className}, ${updatePojo}, ${queryPojo}> {
 
-    int deleteById(Long id);
-
-    int save(${updatePojo} ${updatePojo?uncap_first});
-
-    int saveSelective(${updatePojo} ${updatePojo?uncap_first});
-
-    ${className} findById(Long id);
-
-    int modifyById(${updatePojo} ${updatePojo?uncap_first});
-
-    List<${className}> findByParams(${queryPojo} ${queryPojo?uncap_first});
-
-    long findCountByParams(${queryPojo} ${queryPojo?uncap_first});
 }

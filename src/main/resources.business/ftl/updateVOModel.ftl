@@ -6,7 +6,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
- * Package: ${packageName}
+ * Package: ${updatePojo_packageName}
  * User:
  * Email:
  * Date: ${.now?string("yyyy/MM/dd")}
