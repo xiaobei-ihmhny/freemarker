@@ -12,7 +12,7 @@
 </resultMap>
 	<!-- 数据库字段的集合 -->
 	<sql id = "Base_Column_List" >
-		<#list properties as pro><#if pro_has_next>${pro.columnName}, <#else>${pro.columnName}</#if></#list>
+		<#list properties as pro><#if pro_has_next>`${pro.columnName}`, <#else>`${pro.columnName}`</#if></#list>
 	</sql>
 
 	<!-- 对象属性的集合 -->
@@ -43,7 +43,7 @@
         <trim prefix="(" suffix=")" suffixOverrides="," >
 		<#list properties as pro>
             <if test="${pro.proName} != null" >
-			${pro.columnName},
+			`${pro.columnName}`,
             </if>
 		</#list>
         </trim>
@@ -72,7 +72,7 @@
 			<#list properties as pro>
 			<#if pro.columnName!="id">
 			<if test="${pro.proName} != null" >
-				${pro.columnName} = ${r"#{"}${pro.proName}, jdbcType=${pro.columnType}${r"}"},
+				`${pro.columnName}` = ${r"#{"}${pro.proName}, jdbcType=${pro.columnType}${r"}"},
 			</if>
 			</#if>
 			</#list>
@@ -106,7 +106,7 @@
 		<#list properties as pro>
 		<#if pro.columnName!="id">
             <if test="${pro.proName} != null" >
-				AND ${pro.columnName} = ${r"#{"}${pro.proName}, jdbcType=${pro.columnType}${r"}"}
+				AND `${pro.columnName}` = ${r"#{"}${pro.proName}, jdbcType=${pro.columnType}${r"}"}
 			</if>
 		</#if>
 		</#list>
@@ -134,7 +134,7 @@
 		<#list properties as pro>
 			<#if pro.columnName!="id">
 			<if test="${pro.proName} != null" >
-				AND ${pro.columnName} = ${r"#{"}${pro.proName}, jdbcType=${pro.columnType}${r"}"}
+				AND `${pro.columnName}` = ${r"#{"}${pro.proName}, jdbcType=${pro.columnType}${r"}"}
 			</if>
 			</#if>
 		</#list>
