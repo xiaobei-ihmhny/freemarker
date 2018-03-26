@@ -1,5 +1,6 @@
 package ${controller_packageName};
 
+import com.alibaba.fastjson.JSON;
 import com.jd.bdp.ai.iot.common.PageResult;
 import ${pojo_packageName}.${className};
 import ${queryPojo_packageName}.${queryPojo};
@@ -7,14 +8,13 @@ import ${updatePojo_packageName}.${updatePojo};
 import ${service_packageName}.${className}Service;
 import com.jd.bdp.ai.iot.web.common.AbstractBaseController;
 import com.jd.bdp.ai.iot.web.utils.VelocityUtil;
-import com.jd.fastjson.JSON;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * Package: ${controller_packageName}
@@ -38,9 +38,9 @@ public class ${className}Controller extends AbstractBaseController {
      * @return 查询结果
 	 */
     @ResponseBody
-    @RequestMapping(value = "findByParams")
+    @RequestMapping(value = "list")
     public String findByParams(${queryPojo} ${queryPojo?uncap_first}){
-        List<${className}> ${className?uncap_first}List = ${className?uncap_first}Service.queryByParams(${queryPojo?uncap_first});
+        PageResult<${className}> ${className?uncap_first}List = ${className?uncap_first}Service.queryByParams(${queryPojo?uncap_first});
         return JSON.toJSONString(${className?uncap_first}List);
     }
 
@@ -104,7 +104,7 @@ public class ${className}Controller extends AbstractBaseController {
      */
     @ResponseBody
     @RequestMapping(value = "removeById")
-    public String deleteById(long id){
+    public String removeById(long id){
         int result = ${className?uncap_first}Service.removeById(id);
         return JSON.toJSONString(result);
     }

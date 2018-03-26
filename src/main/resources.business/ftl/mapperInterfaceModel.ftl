@@ -1,5 +1,6 @@
 package ${packageName};
 
+import com.jd.bdp.ai.iot.dao.common.BaseMapper;
 import ${pojo_packageName}.${className};
 import ${queryPojo_packageName}.${queryPojo};
 import ${updatePojo_packageName}.${updatePojo};
@@ -14,19 +15,6 @@ import java.util.List;
  * Time: ${.now?string("HH:mm")}
  * Description:
  */
-public interface ${className}Mapper {
+public interface ${className}Mapper extends BaseMapper<Long,${className},${updatePojo},${queryPojo}> {
 
-    int deleteById(Long id);
-
-    int insert(${updatePojo} ${updatePojo?uncap_first});
-
-    int insertSelective(${updatePojo} ${updatePojo?uncap_first});
-
-    ${className} selectById(Long id);
-
-    int updateById(${updatePojo} ${updatePojo?uncap_first});
-
-    List<${className}> selectByParams(${queryPojo} ${queryPojo?uncap_first});
-
-    long selectCountByParams(${queryPojo} ${queryPojo?uncap_first});
 }
