@@ -14,4 +14,4 @@
 4. 可以指定文件生成的存放路径，目前的规则是文件存在则覆盖，不存在则新增。
 5. 配置了两种环境，可通过pom.xml文件进行配置文件的选择。
 
-<div align="center"> <img src="..//freemarker相关类说明.png" width=""/> </div><br>
+<div align="center"> <img src="freemarker相关类说明.png" width=""/> </div><br>
