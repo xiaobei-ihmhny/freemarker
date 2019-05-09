@@ -21,11 +21,11 @@
 	</sql>
 
     <!-- 根据主键删除 -->
-    <delete id="deleteById" parameterType="java.lang.Integer" >
+    <delete id="deleteById" parameterType="java.lang.Long" >
         DELETE
         FROM ${tableName}
         WHERE
-        id = ${r"#{"}id${r",jdbcType=INTEGER}"}
+        id = ${r"#{"}id${r",jdbcType=Long}"}
 	</delete>
 
     <!--全部插入-->
@@ -57,12 +57,12 @@
     </insert>
 
     <!-- 根据主键查询 -->
-    <select id="selectById" resultMap="${className}Map" parameterType="java.lang.Integer" >
+    <select id="selectById" resultMap="${className}Map" parameterType="java.lang.Long" >
         SELECT
         <include refid="Base_Column_List" />
         FROM ${tableName}
         WHERE
-        id = ${r"#{"}id${r",jdbcType=INTEGER}"}
+        id = ${r"#{"}id${r",jdbcType=Long}"}
 	</select>
 
 	<!--部分字段更新-->
@@ -78,7 +78,7 @@
 			</#list>
 		</set>
 		WHERE 
-		id = ${r"#{"}id${r",jdbcType=INTEGER}"}
+		id = ${r"#{"}id${r",jdbcType=Long}"}
 	</update>
 	
 	<#--<!--更新&ndash;&gt;-->
@@ -105,17 +105,9 @@
             <if test="${pro.proName} != null" >
 			AND ${pro.columnName} = ${r"#{"}${pro.proName}${r"}"}
 			</if>
-			<#if pro.proType=="String">
-			<if test="${pro.proName}ByLike != null" >
-			AND ${pro.columnName} like CONCAT('%',${r"#{"}${pro.proName}ByLike${r"}"},'%' )
-			</if>
-			</#if>
 		</#if>
 		</#list>
 		</where>
-        <if test="orderBy != null" >
-            ORDER BY ${r"${"}orderBy${r"}"}
-        </if>
 		<#--<if test="orderBy == 'asc'" >-->
 		<#--ORDER BY id asc-->
 		<#--</if>-->
@@ -126,20 +118,4 @@
 			<#--ORDER BY id ${r"#{"}orderBy${r"}"}-->
 		<#--</if>-->
 	</select>
-
-    <!-- 查询 -->
-    <select id="selectCountByParams" parameterType="${queryPojo_packageName}.${queryPojo}" resultType="java.lang.Long">
-        SELECT
-		COUNT(0)
-        FROM ${tableName}
-        <where>
-		<#list properties as pro>
-			<#if pro.columnName!="id">
-                <if test="${pro.proName} != null" >
-                    AND ${pro.columnName} = ${r"#{"}${pro.proName}${r"}"}
-                </if>
-			</#if>
-		</#list>
-        </where>
-    </select>
 </mapper>

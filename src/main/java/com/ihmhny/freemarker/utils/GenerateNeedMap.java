@@ -34,6 +34,9 @@ public class GenerateNeedMap {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
+                if(!"after_sale_arbitration".equals(rs.getString(1))){
+                    continue;
+                }
                 String tableName = rs.getString(1);
                 //key为数据库表名
                 String pojoName = convertTableNameToPojo(separator, tableName);
@@ -57,6 +60,9 @@ public class GenerateNeedMap {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
+                if(!"after_sale_arbitration".equals(rs.getString(1))){
+                    continue;
+                }
                 String tableName = rs.getString(1);
                 //key为数据库表名
                 String moduleName = convertTableNameToModule(separator, tableName);
@@ -80,6 +86,9 @@ public class GenerateNeedMap {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
+                if(!"after_sale_arbitration".equals(rs.getString(1))){
+                    continue;
+                }
                 String tableName = rs.getString(1);
                 //key为数据库表名
                 String requestMappingName = convertTableNameToRequestMappingName(separator, tableName);
@@ -103,6 +112,9 @@ public class GenerateNeedMap {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
+                if(!"after_sale_arbitration".equals(rs.getString(1))){
+                    continue;
+                }
                 String tableName = rs.getString(1);
                 String generateResult = tablesMapName + ".add(\"" + tableName + "\");";
                 System.out.println(generateResult);
@@ -139,7 +151,7 @@ public class GenerateNeedMap {
         String variable = tableName.toLowerCase();
         if(variable.indexOf(separator) > -1){//如果有
             //去掉模块名
-            variable = variable.substring(variable.indexOf("_")+1);
+//            variable = variable.substring(variable.indexOf("_")+1);
             char[] varChar = variable.toCharArray();
             //首字母大写
             varChar[0] = Character.toUpperCase(varChar[0]);

@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class DataServiceImpl implements DataService {
 	
@@ -18,8 +19,10 @@ public class DataServiceImpl implements DataService {
 	@Override
 	public Map<String, Object> getTemplateData(String tableName, char fieldSeparator, String packageName, String className) {
 		DataBaseService dbs = new DataBaseServiceImpl();
+		Random random = new Random();
 		Map<String, Object> templateData = new HashMap<String, Object>();
 		templateData.put("version",PropUtils.getPorp("version"));
+		templateData.put("serialVersionUID",String.valueOf(random.nextLong()));
 		templateData.put("tableName", tableName);
 		templateData.put("packageName", packageName);
 		templateData.put("className", className);

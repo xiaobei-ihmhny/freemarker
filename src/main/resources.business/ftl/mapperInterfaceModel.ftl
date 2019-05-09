@@ -1,16 +1,25 @@
 package ${packageName};
 
-import com.ihmhny.common.base.BaseMapper;
 import ${pojo_packageName}.${className};
 import ${queryPojo_packageName}.${queryPojo};
-import ${updatePojo_packageName}.${updatePojo};
 /**
  * @author xiaobei
- * @version ${version}
- * @project ${project}
- * @table_name ${tableName}
+ * @version 1.0
+ * @className ${className}
+ * @description 对应表${tableName}
  * @date ${.now?string("yyyy-MM-dd HH:mm")}
  */
-public interface ${className}Mapper extends BaseMapper<Integer,${className},${updatePojo},${queryPojo}> {
+public interface ${className}Mapper {
 
+    int deleteById(Long id);
+
+    int insert(${className} ${className?uncap_first});
+
+    int insertSelective(${className} ${className?uncap_first});
+
+    ${className} selectById(Long id);
+
+    List<${className}> selectByParams(${className} ${className?uncap_first});
+
+    int updateById(${className} ${className?uncap_first});
 }

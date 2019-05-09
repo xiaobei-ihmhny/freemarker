@@ -32,33 +32,13 @@ public class TableNeededMap {
     public static List<String> needTablesList = new ArrayList<>();
 
     static {
-        needTablesMap.put("goods", "goods");
-        needTablesMap.put("miaosha_goods", "miaoshaGoods");
-        needTablesMap.put("miaosha_order", "miaoshaOrder");
-        needTablesMap.put("miaosha_user", "MiaoshaUser");
-        needTablesMap.put("order_info", "orderInfo");
-        needTablesMap.put("user", "user");
+        needTablesMap.put("after_sale_arbitration", "AfterSaleArbitration");
         //===============================================//
-        needTablesList.add("goods");
-        needTablesList.add("miaosha_goods");
-        needTablesList.add("miaosha_order");
-        needTablesList.add("miaosha_user");
-        needTablesList.add("order_info");
-        needTablesList.add("user");
+        needTablesList.add("after_sale_arbitration");
         //===============================================//
-        moduleMap.put("goods", "goods");
-        moduleMap.put("miaosha_goods", "trade");
-        moduleMap.put("miaosha_order", "trade");
-        moduleMap.put("miaosha_user", "trade");
-        moduleMap.put("order_info", "order");
-        moduleMap.put("user", "user");
+        moduleMap.put("after_sale_arbitration", "after");
         //===============================================//
-        requestMappingMap.put("goods", "goods");
-        requestMappingMap.put("miaosha_goods", "miaosha/goods");
-        requestMappingMap.put("miaosha_order", "miaosha/order");
-        requestMappingMap.put("miaosha_user", "miaosha/user");
-        requestMappingMap.put("order_info", "order/info");
-        requestMappingMap.put("user", "user");
+        requestMappingMap.put("after_sale_arbitration", "after/sale/arbitration");
     }
 
 
