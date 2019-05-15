@@ -21,7 +21,7 @@ import java.util.Date;
 
 /**
  * ${className}Controller测试代码类
- * @author xiaobei
+ * @author xiaobei-ihmhny
  * @version ${version}
  * @project ${project}
  * @class_name ${className}ControllerTest

@@ -19,7 +19,7 @@ import java.util.Date;
 
 /**
  * ${className}Service测试代码类
- * @author xiaobei
+ * @author xiaobei-ihmhny
  * @version ${version}
  * @project ${project}
  * @class_name ${className}ServiceTest

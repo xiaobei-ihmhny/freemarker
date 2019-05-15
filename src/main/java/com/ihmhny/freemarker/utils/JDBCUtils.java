@@ -7,7 +7,7 @@ import javax.sql.DataSource;
 import java.sql.*;
 
 /**
- * @author xiaobei
+ * @author xiaobei-ihmhny
  * @version 1.2
  * @project yzys
  * @class_name JDBCUtils

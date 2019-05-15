@@ -5,7 +5,7 @@ import ${pojo_packageName}.${className};
 import ${queryPojo_packageName}.${queryPojo};
 import ${updatePojo_packageName}.${updatePojo};
 /**
- * @author xiaobei
+ * @author xiaobei-ihmhny
  * @version ${version}
  * @project ${project}
  * @table_name ${tableName}

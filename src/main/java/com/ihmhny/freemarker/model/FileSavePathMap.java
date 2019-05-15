@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * 从配置文件中读取相关配置，获取所有的文件保存路径
  *
- * @author Xiaobei
+ * @author xiaobei-ihmhny
  * @create 2017-06-28 21:15
  */
 public class FileSavePathMap {

@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author xiaobei
+ * @author xiaobei-ihmhny
  * @version ${version}
  * @project ${project}
  * @class_name ${className}Controller

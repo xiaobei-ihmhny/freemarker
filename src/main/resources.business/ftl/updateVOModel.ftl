@@ -6,7 +6,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
- * @author xiaobei
+ * @author xiaobei-ihmhny
  * @version ${version}
  * @project ${project}
  * @class_name ${updatePojo}

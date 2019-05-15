@@ -11,7 +11,7 @@ import java.io.OutputStreamWriter;
 import java.util.Map;
 
 /**
- * @author xiaobei
+ * @author xiaobei-ihmhny
  * @version 1.2
  * @project yzys
  * @class_name FreeMarkerUtils

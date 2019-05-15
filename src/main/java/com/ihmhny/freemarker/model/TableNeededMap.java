@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * 需要生成的表名和类名之间的对应关系
  *
- * @author Xiaobei
+ * @author xiaobei-ihmhny
  * @create 2017-06-24 16:36
  */
 public class TableNeededMap {
@@ -32,13 +32,7 @@ public class TableNeededMap {
     public static List<String> needTablesList = new ArrayList<>();
 
     static {
-        needTablesMap.put("after_sale_arbitration", "AfterSaleArbitration");
-        //===============================================//
-        needTablesList.add("after_sale_arbitration");
-        //===============================================//
-        moduleMap.put("after_sale_arbitration", "after");
-        //===============================================//
-        requestMappingMap.put("after_sale_arbitration", "after/sale/arbitration");
+
     }
 
 

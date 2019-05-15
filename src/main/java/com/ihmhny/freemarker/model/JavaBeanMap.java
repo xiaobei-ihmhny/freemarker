@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * 获取所有的类名
  *
- * @author Xiaobei
+ * @author xiaobei-ihmhny
  * @create 2017-06-29 8:53
  */
 public class JavaBeanMap {

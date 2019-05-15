@@ -10,7 +10,7 @@ import java.util.*;
 import java.util.Date;
 
 /**
- * @author xiaobei
+ * @author xiaobei-ihmhny
  * @version 1.2
  * @project yzys
  * @class_name DataBaseServiceImpl
@@ -39,7 +39,7 @@ public class DataBaseServiceImpl implements DataBaseService {
 		try {
 			List<FieldBean> beanList = new ArrayList<FieldBean>();
 			
-			String sql = "select * from " + tableName;
+			String sql = "select * from " + tableName + " limit 0,1";
 			conn = JDBCUtils.getConn();
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -79,7 +79,7 @@ public class DataBaseServiceImpl implements DataBaseService {
 
 	@Override
 	public Map<String, String> getAllTableNames(char separator) {
-		Map<String, String> tableNames = new HashMap<String, String>();
+		Map<String, String> tableNames = new TreeMap<>();
 		try {
 			String sql = "show tables";
 			conn = JDBCUtils.getConn();
@@ -249,7 +249,7 @@ public class DataBaseServiceImpl implements DataBaseService {
 		try {
 			List<String> setMethodList = new ArrayList<>();
 			String setMethod = "";
-			String sql = "select * from " + tableName;
+			String sql = "select * from " + tableName + " limit 0,1";
 			conn = JDBCUtils.getConn();
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();

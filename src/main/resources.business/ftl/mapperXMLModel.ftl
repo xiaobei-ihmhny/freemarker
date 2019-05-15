@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="${dao_packageName}.${className}Mapper">
-<resultMap id="${className}Map" type="${pojo_packageName}.${className}">
-	<id column="id" property="id" />
-	<#list properties as pro>
-	<#if pro.columnName!="id">
-    <result column="${pro.columnName}" property="${pro.proName}" />
-    </#if>
-	</#list>
-</resultMap>
+	<resultMap id="${className}Map" type="${pojo_packageName}.${className}">
+		<id column="id" property="id" />
+		<#list properties as pro>
+		<#if pro.columnName!="id">
+		<result column="${pro.columnName}" property="${pro.proName}" />
+		</#if>
+		</#list>
+	</resultMap>
 	<!-- 数据库字段的集合 -->
 	<sql id = "Base_Column_List" >
 		<#list properties as pro><#if pro_has_next>${pro.columnName}, <#else>${pro.columnName}</#if></#list>
@@ -21,48 +21,48 @@
 	</sql>
 
     <!-- 根据主键删除 -->
-    <delete id="deleteById" parameterType="java.lang.Long" >
-        DELETE
-        FROM ${tableName}
-        WHERE
-        id = ${r"#{"}id${r",jdbcType=Long}"}
+	<delete id="deleteById" parameterType="java.lang.Long" >
+		DELETE
+		FROM ${tableName}
+		WHERE
+		id = ${r"#{"}id${r",jdbcType=BIGINT}"}
 	</delete>
 
     <!--全部插入-->
-    <insert id="insert" parameterType="${updatePojo_packageName}.${updatePojo}" >
-        INSERT INTO ${tableName} (
-        <include refid="Base_Column_List" />
-        ) VALUES (
-        <include refid="Base_Property_List" />
-        )
+    <insert id="insertFull" parameterType="${updatePojo_packageName}.${updatePojo}" >
+		INSERT INTO ${tableName} (
+		<include refid="Base_Column_List" />
+		) VALUES (
+		<include refid="Base_Property_List" />
+		)
     </insert>
 
-    <!--部分字段插入-->
-    <insert id="insertSelective" keyProperty="id" parameterType="${updatePojo_packageName}.${updatePojo}" useGeneratedKeys="true">
-        INSERT INTO ${tableName}
-        <trim prefix="(" suffix=")" suffixOverrides="," >
+	<!--部分字段插入-->
+	<insert id="insert" keyProperty="id" parameterType="${updatePojo_packageName}.${updatePojo}" useGeneratedKeys="true">
+		INSERT INTO ${tableName}
+		<trim prefix="(" suffix=")" suffixOverrides="," >
 		<#list properties as pro>
-            <if test="${pro.proName} != null" >
-			${pro.columnName},
-            </if>
+			<if test="${pro.proName} != null" >
+				${pro.columnName},
+			</if>
 		</#list>
-        </trim>
-        <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		</trim>
+		<trim prefix="VALUES (" suffix=")" suffixOverrides="," >
 		<#list properties as pro>
-            <if test="${pro.proName} != null" >
+		<if test="${pro.proName} != null" >
 			${r"#{"}${pro.proName}${r"}"},
-            </if>
+		</if>
 		</#list>
-        </trim>
-    </insert>
+		</trim>
+	</insert>
 
     <!-- 根据主键查询 -->
-    <select id="selectById" resultMap="${className}Map" parameterType="java.lang.Long" >
-        SELECT
-        <include refid="Base_Column_List" />
-        FROM ${tableName}
-        WHERE
-        id = ${r"#{"}id${r",jdbcType=Long}"}
+    <select id="getById" resultMap="${className}Map" parameterType="java.lang.Long" >
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM ${tableName}
+		WHERE
+		id = ${r"#{"}id${r",jdbcType=BIGINT}"}
 	</select>
 
 	<!--部分字段更新-->
@@ -77,10 +77,10 @@
 			</#if>
 			</#list>
 		</set>
-		WHERE 
-		id = ${r"#{"}id${r",jdbcType=Long}"}
+		WHERE
+		id = ${r"#{"}id${r",jdbcType=BIGINT}"}
 	</update>
-	
+
 	<#--<!--更新&ndash;&gt;-->
 	<#--<update id="updateByPrimaryKey" parameterType="${vo_packageName}.${className}VO" >-->
 		<#--UPDATE ${tableName}-->
@@ -93,17 +93,17 @@
 		<#--WHERE-->
 		<#--id = ${r"#{"}id${r",jdbcType=INTEGER}"}-->
 	<#--</update>-->
-	
+
 	<!-- 查询 -->
-	<select id="selectByParams" parameterType="${queryPojo_packageName}.${queryPojo}" resultMap="${className}Map">
+	<select id="listByParams" parameterType="${queryPojo_packageName}.${queryPojo}" resultMap="${className}Map">
 		SELECT
 		<include refid="Base_Column_List" />
 		FROM ${tableName}
-        <where>
+		<where>
 		<#list properties as pro>
 		<#if pro.columnName!="id">
-            <if test="${pro.proName} != null" >
-			AND ${pro.columnName} = ${r"#{"}${pro.proName}${r"}"}
+			<if test="${pro.proName} != null" >
+				AND ${pro.columnName} = ${r"#{"}${pro.proName}${r"}"}
 			</if>
 		</#if>
 		</#list>

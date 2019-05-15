@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * 测试对应关系生成情况
  *
- * @author Xiaobei
+ * @author xiaobei-ihmhny
  * @create 2017-07-01 16:01
  */
 public class GenerateNeedMapTest {

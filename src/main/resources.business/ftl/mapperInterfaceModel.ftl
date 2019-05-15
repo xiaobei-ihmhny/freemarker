@@ -2,24 +2,27 @@ package ${packageName};
 
 import ${pojo_packageName}.${className};
 import ${queryPojo_packageName}.${queryPojo};
+import org.apache.ibatis.annotations.Param;
+import java.util.List;
+
 /**
- * @author xiaobei
+ * // TODO
+ * @author // TODO yourname
  * @version 1.0
- * @className ${className}
- * @description 对应表${tableName}
  * @date ${.now?string("yyyy-MM-dd HH:mm")}
  */
 public interface ${className}Mapper {
 
-    int deleteById(Long id);
+    ${className} getById(@Param("id") Long id);
+
+    List<${className}> listByParams(${queryPojo} ${queryPojo?uncap_first});
 
     int insert(${className} ${className?uncap_first});
 
-    int insertSelective(${className} ${className?uncap_first});
-
-    ${className} selectById(Long id);
-
-    List<${className}> selectByParams(${className} ${className?uncap_first});
-
     int updateById(${className} ${className?uncap_first});
+
+    int deleteById(@Param("id") Long id);
+
+    int insertFull(${className} ${className?uncap_first});
+
 }

@@ -2,15 +2,18 @@ package ${queryPojo_packageName};
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.io.Serializable;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
- * @author xiaobei
+ * // TODO
+ * @author // TODO yourname
  * @version 1.0
- * @className ${className}
- * @description 对应表${tableName}
  * @date ${.now?string("yyyy-MM-dd HH:mm")}
  */
-public c
-public class ${queryPojo} {
+@ApiModel(value = "${className}对象", description = "")
+public class ${queryPojo} implements Serializable {
 
     private static final long serialVersionUID = ${serialVersionUID}L;
 
@@ -18,13 +21,14 @@ public class ${queryPojo} {
     /**
     * ${pro.columnComment}
     */
+    @ApiModelProperty(value = "${pro.columnComment}")
     private ${pro.proType} ${pro.proName};
 
 </#list>
 
 <#--//属性的get和set方法-->
 <#list properties as pro>
-    <#if pro.columnName!="id">
+    <#--<#if pro.columnName!="id">-->
     public ${pro.proType} get${pro.proName?cap_first}() {
     	return ${pro.proName};
     }
@@ -32,7 +36,7 @@ public class ${queryPojo} {
     public void set${pro.proName?cap_first}(${pro.proType} ${pro.proName}) {
     	this.${pro.proName} = ${pro.proName};
     }
-    </#if>
+    <#--</#if>-->
 
 </#list>
     @Override

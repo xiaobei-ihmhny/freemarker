@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * @author xiaobei
+ * @author xiaobei-ihmhny
  * @version ${version}
  * @project ${project}
  * @class_name ${queryPojo}

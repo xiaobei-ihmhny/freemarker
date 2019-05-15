@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 import java.io.File;
 
 /**
- * @author xiaobei
+ * @author xiaobei-ihmhny
  * @version 1.2
  * @project yzys
  * @class_name GenerateDirUtils

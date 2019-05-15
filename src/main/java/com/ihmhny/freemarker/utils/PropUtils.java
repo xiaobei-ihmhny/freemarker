@@ -7,7 +7,7 @@ import java.util.Properties;
 import java.util.Set;
 
 /**
- * @author xiaobei
+ * @author xiaobei-ihmhny
  * @version 1.2
  * @project yzys
  * @class_name PropUtils

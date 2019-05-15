@@ -5,7 +5,7 @@ import com.ihmhny.freemarker.utils.PropUtils;
 /**
  * 从配置文件中读取相关配置，获取所有生成文件的文件名
  *
- * @author Xiaobei
+ * @author xiaobei-ihmhny
  * @create 2017-06-28 23:39
  */
 public class FileNameMap {

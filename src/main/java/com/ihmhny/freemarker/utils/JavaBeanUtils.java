@@ -3,7 +3,7 @@ package com.ihmhny.freemarker.utils;
 import java.util.Locale;
 
 /**
- * @author xiaobei
+ * @author xiaobei-ihmhny
  * @version 1.2
  * @project yzys
  * @class_name JavaBeanUtils

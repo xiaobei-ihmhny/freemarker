@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
- * @author xiaobei
+ * @author xiaobei-ihmhny
  * @version 1.2
  * @project yzys
  * @class_name GenerateNeedMap
@@ -34,9 +34,6 @@ public class GenerateNeedMap {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
-                if(!"after_sale_arbitration".equals(rs.getString(1))){
-                    continue;
-                }
                 String tableName = rs.getString(1);
                 //key为数据库表名
                 String pojoName = convertTableNameToPojo(separator, tableName);
@@ -60,9 +57,6 @@ public class GenerateNeedMap {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
-                if(!"after_sale_arbitration".equals(rs.getString(1))){
-                    continue;
-                }
                 String tableName = rs.getString(1);
                 //key为数据库表名
                 String moduleName = convertTableNameToModule(separator, tableName);
@@ -86,9 +80,6 @@ public class GenerateNeedMap {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
-                if(!"after_sale_arbitration".equals(rs.getString(1))){
-                    continue;
-                }
                 String tableName = rs.getString(1);
                 //key为数据库表名
                 String requestMappingName = convertTableNameToRequestMappingName(separator, tableName);
@@ -112,9 +103,6 @@ public class GenerateNeedMap {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
-                if(!"after_sale_arbitration".equals(rs.getString(1))){
-                    continue;
-                }
                 String tableName = rs.getString(1);
                 String generateResult = tablesMapName + ".add(\"" + tableName + "\");";
                 System.out.println(generateResult);
@@ -133,7 +121,8 @@ public class GenerateNeedMap {
     public static String convertTableNameToModule(char separator, String tableName) {
         //判断字符串中是否含有分隔符
         String variable = tableName.toLowerCase();
-        if(variable.indexOf(separator) > -1){//如果有
+        //如果有
+        if(variable.indexOf(separator) > -1){
             //拿到模块名
             variable = variable.substring(0,variable.indexOf("_"));
         }
@@ -149,9 +138,10 @@ public class GenerateNeedMap {
     public static String convertTableNameToPojo(char separator, String tableName){
         //判断字符串中是否含有分隔符
         String variable = tableName.toLowerCase();
-        if(variable.indexOf(separator) > -1){//如果有
+        //如果有
+        if(variable.indexOf(separator) > -1){
             //去掉模块名
-//            variable = variable.substring(variable.indexOf("_")+1);
+            variable = variable.substring(variable.indexOf("_")+1);
             char[] varChar = variable.toCharArray();
             //首字母大写
             varChar[0] = Character.toUpperCase(varChar[0]);
@@ -174,7 +164,8 @@ public class GenerateNeedMap {
     public static String convertTableNameToRequestMappingName(char separator, String tableName) {
         //判断字符串中是否含有分隔符
         String variable = tableName.toLowerCase();
-        if(variable.indexOf(separator) > -1){//如果有
+        //如果有
+        if(variable.indexOf(separator) > -1){
             variable = variable.replaceAll(String.valueOf(separator), "/");
         }
         return variable;

@@ -1,80 +1,89 @@
 package ${serviceImpl_packageName};
 
-import com.ihmhny.common.base.AbstractBaseService;
-import com.ihmhny.common.base.BaseMapper;
 import ${mapper_packageName}.${className}Mapper;
 import ${pojo_packageName}.${className};
 import ${queryPojo_packageName}.${queryPojo};
-import ${updatePojo_packageName}.${updatePojo};
 import ${service_packageName}.${className}Service;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
+import java.util.List;
 
 /**
- * @author xiaobei
- * @version ${version}
- * @project ${project}
- * @class_name ${className}ServiceImpl
+ * // TODO
+ * @author // TODO yourname
+ * @version 1.0
  * @date ${.now?string("yyyy-MM-dd HH:mm")}
  */
 @Service("${ className }Service")
-public class ${ className }ServiceImpl extends AbstractBaseService<Integer,${className},${updatePojo},${queryPojo}> implements ${ className }Service{
+public class ${ className }ServiceImpl implements ${ className }Service{
 
-    @Resource
+    @Autowired
     private ${className }Mapper ${className?uncap_first}Mapper;
 
-
+    /**
+     * // TODO 数据库更新时一定要添加事务@Transactional(rollbackFor = Exception.class)
+     * @param id
+     * @return
+     */
     @Override
-    protected BaseMapper getMapper() {
-        return ${className?uncap_first}Mapper;
+    @Transactional(rollbackFor = Exception.class)
+    public int removeById(Long id) {
+        return ${className?uncap_first}Mapper.deleteById(id);
     }
 
-    <#--@Override-->
-    <#--public int deleteById(Integer id) {-->
-        <#--return ${className?uncap_first}Mapper.deleteById(id);-->
-    <#--}-->
+    /**
+     * // TODO 数据库更新时一定要添加事务@Transactional(rollbackFor = Exception.class)
+     * @param ${className?uncap_first}
+     * @return
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int saveFull(${className} ${className?uncap_first}) {
+        return ${className?uncap_first}Mapper.insertFull(${className?uncap_first});
+    }
 
-    <#--@Override-->
-    <#--public int insert(${ className } ${className?uncap_first}) {-->
-        <#--return ${className?uncap_first}Mapper.insert(${className?uncap_first});-->
-    <#--}-->
+    /**
+     * // TODO 数据库更新时一定要添加事务@Transactional(rollbackFor = Exception.class)
+     * @param ${className?uncap_first}
+     * @return
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int save(${className} ${className?uncap_first}) {
+        return ${className?uncap_first}Mapper.insert(${className?uncap_first});
+    }
 
-    <#--@Override-->
-    <#--public int insertSelective(${className} ${className?uncap_first}) {-->
-        <#--return ${className?uncap_first}Mapper.insertSelective(${className?uncap_first});-->
-    <#--}-->
+    /**
+     * // TODO
+     * @param id
+     * @return
+     */
+    @Override
+    public ${className} getById(Long id) {
+        return ${className?uncap_first}Mapper.getById(id);
+    }
 
-    <#--@Override-->
-    <#--public int batchInsert(List<${className}> list) {-->
-        <#--return ${className?uncap_first}Mapper.batchInsert(list);-->
-    <#--}-->
+    /**
+     * // TODO
+     * @param ${queryPojo?uncap_first}
+     * @return
+     */
+    @Override
+    public List<${className}> listByParams(${queryPojo} ${queryPojo?uncap_first}) {
+    	return ${className?uncap_first}Mapper.listByParams(${queryPojo?uncap_first});
+    }
 
-    <#--@Override-->
-    <#--public ${ className } selectById(Integer id) {-->
-        <#--return ${className?uncap_first}Mapper.selectById(id);-->
-    <#--}-->
+    /**
+     * // TODO 数据库更新时一定要添加事务@Transactional(rollbackFor = Exception.class)
+     * @param ${className?uncap_first}
+     * @return
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int updateById(${className} ${className?uncap_first}) {
+    	return ${className?uncap_first}Mapper.updateById(${className?uncap_first});
+    }
 
-    <#--@Override-->
-    <#--public int updateById(${className} ${className?uncap_first}) {-->
-        <#--return ${className?uncap_first}Mapper.updateById(${className?uncap_first});-->
-    <#--}-->
-
-    <#--@Override-->
-    <#--public Long selectCount(${className} ${className?uncap_first}) {-->
-        <#--return Long.valueOf(0);-->
-    <#--}-->
-
-    <#--@Override-->
-    <#--public <Q extends BaseQueryParams> PageResult<${className}> selectByParams(Q queryParams) {-->
-        <#--List<${className}> list = ${className?uncap_first}Mapper.selectByParams(queryParams);-->
-        <#--return queryPageResult(list);-->
-    <#--}-->
-
-    <#--@Override-->
-    <#--public <Q extends BaseQueryParams> Long selectCountByParams(Q queryParams) {-->
-        <#--return null;-->
-    <#--}-->
-    
 }

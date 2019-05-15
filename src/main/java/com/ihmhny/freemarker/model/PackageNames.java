@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * 获取所有的包路径
  *
- * @author Xiaobei
+ * @author xiaobei-ihmhny
  * @create 2017-06-28 20:16
  */
 public class PackageNames {
